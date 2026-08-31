@@ -24,7 +24,6 @@ label start:
     show eileen happy
 
     # These display lines of dialogue.
-
     a "English, check. History, check. PE, check, thankfully..."
 
     a "I did all my classes, paid all my grad dues, and-"
@@ -33,10 +32,13 @@ label start:
 
     a "Community service is a graduation requirement?!"
 
-    # hide eileen happy
+    hide eileen happy
     # scene title screen
     # scene teacher room
-    # show eileen happy
+
+    "Welcome to 17@16"
+    
+    show eileen happy
 
     a "Time to get to work, then! Let's ask Ms. Katherine for help."
 
@@ -50,7 +52,7 @@ label start:
 
     # Show goal chart, highlight each one, and explain
 
-    a "Wow! But Yonkers is kind of in the middle of nowhere..."
+    a "Wow! But Yonkers is kind of in the middle of nowhere, no?"
 
     k "Don't worry! Here's a map of all the opportunities I did when I was a young lad."
 
@@ -58,8 +60,39 @@ label start:
 
     # Gained new item
 
+    a "Time to work on Goal 1: No Poverty!"
 
+    k "Reflection: What does poverty look like to you?"
+    # Option to skip reflection
 
+    a "Poverty looks like homelessness and not having enough money to have basic needs in life, like food or shelter."
+
+    k "That's super close! According to the United Nations, poverty is defined as _"
+
+    a "What can I do to help? I'm just 16..."
+
+    k "You can filter the opportunities on the map by SDG goal!"
+
+    k "It looks like you have the option of either the _A_ or _B_"
+
+    k "A is in _! It's what I did as a teenager, and was pretty cool! But it was far away in _"
+
+    k "B is more local, in Yonkers. But I never tried it. I only heard about it from my friend... but I trust her!"
+
+    k "Which one will you choose?"
+    #Pick between two options
+
+    menu:
+        "Do A in NR":
+            a "I'll try A!"
+            k "Great choice!"
+            jump goal1a
+        "Do B in Yonkers":
+            a "I'll try B!"
+            k "Great choice!"
+            jump goal1b
     # This ends the game.
+    
+    a "I'm so excited!"
 
     return
