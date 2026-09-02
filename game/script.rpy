@@ -79,7 +79,7 @@ label start:
 
     k "I volunteered at the garden as a teenager, and was pretty cool! But it was a little far away."
 
-    k "But B is more local, in Yonkers. But I never tried it. I only heard about it from my friend... but I trust her!"
+    k "But B is more local, in Yonkers. I've never tried it. I only heard about it from my friend... but I trust her!"
 
     k "Which one will you choose?"
     #Pick between two options

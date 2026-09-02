@@ -250,8 +250,8 @@ screen quick_menu():
             textbutton _("History") action ShowMenu('history')
             textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
             textbutton _("Auto") action Preference("auto-forward", "toggle")
-            textbutton _("Map") action ShowMenu('map')
-            textbutton _("Journal") action ShowMenu('journal')
+            textbutton _("Map") action Show('map')
+            textbutton _("Journal") action Show('journal')
             textbutton _("Save") action ShowMenu('save')
             textbutton _("Q.Save") action QuickSave()
             textbutton _("Q.Load") action QuickLoad()
@@ -309,9 +309,9 @@ screen navigation():
 
             textbutton _("Save") action ShowMenu("save")
         
-        textbutton _("Map") action ShowMenu("map")
+        textbutton _("Map") action Show("map")
 
-        textbutton _("Journal") action ShowMenu("journal")
+        textbutton _("Journal") action Show("journal")
 
         textbutton _("Load") action ShowMenu("load")
 
@@ -1627,7 +1627,67 @@ style slider_slider:
     xsize 900
 
 screen journal():
-    pass
+
+    modal True
+
+    frame:
+        xalign 0.5
+        yalign 0.5
+
+        text "Journal":
+            xalign 0.5
+            yalign 0.5
+
+        textbutton "Close":
+            xalign 1.0
+            yalign 0.0
+            action Hide("journal")
+
+screen journal_button():
+    zorder 101
+
+    if not renpy.get_screen("journal") and not renpy.get_screen("map"):
+        imagebutton:
+            idle Transform("gui/journalclosed.png", xsize=150, ysize=150)
+            hover Transform("gui/journalopen.png", xsize=150, ysize=150)
+            action Show("journal")
+            xalign 1.0
+            yalign 0.2
+            xoffset -30
+            yoffset 30
+
+init python:
+    config.overlay_screens.append("journal_button")
 
 screen map():
-    pass
+    
+    modal True
+    
+    frame:
+        xalign 0.5
+        yalign 0.5
+
+        text "Map":
+            xalign 0.5
+            yalign 0.5
+        
+        textbutton "Close":
+            xalign 1.0
+            yalign 0.0
+            action Hide("map")
+
+screen map_button():
+    zorder 101
+
+    if not renpy.get_screen("map") and not renpy.get_screen("journal"):
+        imagebutton:
+            idle Transform("gui/map.png", xsize=150, ysize=150)
+            hover Transform("gui/map.png", xsize=150, ysize=150)
+            action Show("map")
+            xalign 1.0
+            yalign 0.0
+            xoffset -30
+            yoffset 30
+
+init python:
+    config.overlay_screens.append("map_button")
