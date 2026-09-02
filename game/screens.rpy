@@ -252,6 +252,7 @@ screen quick_menu():
             textbutton _("Auto") action Preference("auto-forward", "toggle")
             textbutton _("Map") action Show('map')
             textbutton _("Journal") action Show('journal')
+            textbutton _("Levels") action Show('levels')
             textbutton _("Save") action ShowMenu('save')
             textbutton _("Q.Save") action QuickSave()
             textbutton _("Q.Load") action QuickLoad()
@@ -308,6 +309,8 @@ screen navigation():
             textbutton _("History") action ShowMenu("history")
 
             textbutton _("Save") action ShowMenu("save")
+
+        textbutton _("Levels") action Show("levels")
         
         textbutton _("Map") action Show("map")
 
@@ -1646,7 +1649,7 @@ screen journal():
 screen journal_button():
     zorder 101
 
-    if not renpy.get_screen("journal") and not renpy.get_screen("map"):
+    if not renpy.get_screen("journal") and not renpy.get_screen("map") and not renpy.get_screen("levels"):
         imagebutton:
             idle Transform("gui/journalclosed.png", xsize=150, ysize=150)
             hover Transform("gui/journalopen.png", xsize=150, ysize=150)
@@ -1679,7 +1682,7 @@ screen map():
 screen map_button():
     zorder 101
 
-    if not renpy.get_screen("map") and not renpy.get_screen("journal"):
+    if not renpy.get_screen("map") and not renpy.get_screen("journal") and not renpy.get_screen("levels"):
         imagebutton:
             idle Transform("gui/map.png", xsize=150, ysize=150)
             hover Transform("gui/map.png", xsize=150, ysize=150)
@@ -1691,3 +1694,46 @@ screen map_button():
 
 init python:
     config.overlay_screens.append("map_button")
+
+screen levels():
+    modal True
+
+    frame:
+        xalign 0.5
+        yalign 0.5
+        vbox:
+            spacing 20
+
+            text "Levels":
+                xalign 0.5
+            
+            grid 3 6:
+                spacing 15
+                textbutton "Intro":
+                    action Jump("start")
+                for i in range (1, 18):
+                    textbutton "Level [i]":
+                        action Jump("goal" + str(i))
+
+            textbutton "Close":
+                xalign 1.0
+                yalign 0.0
+                action Hide("levels")
+
+screen level_button():
+    zorder 101
+
+    if not renpy.get_screen("levels") and not renpy.get_screen("journal") and not renpy.get_screen("map"):
+        textbutton "Levels":
+            action Show("levels")
+            xalign 1.0
+            yalign 0.4
+            xoffset -30
+            yoffset 30
+
+init python:
+    config.overlay_screens.append("level_button")
+
+label level_menu():
+    call screen levels
+    jump level_menu
