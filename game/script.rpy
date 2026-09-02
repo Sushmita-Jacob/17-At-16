@@ -5,8 +5,11 @@
 
 define a = Character("Ada")
 define k = Character("Ms. Katherine")
-default goal1a = False
-default goal1b = False
+default persistent.highest_level_unlocked = 0
+default persistent.goal1a = False
+default persistent.goal1b = False
+default persistent.goal2a = False
+default persistent.goal2b = False
 
 
 # The game starts here.
@@ -88,15 +91,15 @@ label start:
         "Do the community garden in Mount Vernon":
             a "I'll try the Mount Vernon Community Garden."
             k "Great choice!"
-            $ goal1a = True
+            $ persistent.goal1a = True
+            $ persistent.highest_level_unlocked = 1
             jump goal1a
         "Do B in Yonkers":
             a "I'll try B!"
             k "Great choice!"
-            $ goal1b = True
+            $ persistent.goal1b = True
+            $ persistent.highest_level_unlocked = 1
             jump goal1b
     # This ends the game.
-    
-    a "I'm so excited!"
 
     return

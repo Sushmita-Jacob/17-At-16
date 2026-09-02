@@ -310,7 +310,7 @@ screen navigation():
 
             textbutton _("Save") action ShowMenu("save")
 
-        textbutton _("Levels") action Show("levels")
+        textbutton _("Levels") action Start("level_select")
         
         textbutton _("Map") action Show("map")
 
@@ -1712,13 +1712,17 @@ screen levels():
                 textbutton "Intro":
                     action Jump("start")
                 for i in range (1, 18):
-                    textbutton "Level [i]":
-                        action Jump("goal" + str(i))
+                    if i <= persistent.highest_level_unlocked:
+                        textbutton "Level [i]":
+                            action [Hide("levels"), Jump("goal" + str(i))]
+                    else:
+                        textbutton "Locked":
+                            action NullAction()
 
             textbutton "Close":
                 xalign 1.0
                 yalign 0.0
-                action Hide("levels")
+                action Return()
 
 screen level_button():
     zorder 101
@@ -1734,6 +1738,7 @@ screen level_button():
 init python:
     config.overlay_screens.append("level_button")
 
-label level_menu():
+label level_select:
+    scene bg room
     call screen levels
-    jump level_menu
+    return
