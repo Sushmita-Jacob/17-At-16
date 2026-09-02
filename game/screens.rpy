@@ -1669,23 +1669,52 @@ screen map():
     frame:
         xalign 0.5
         yalign 0.5
-        xsize 1000
-        ysize 1000
+        xsize 800
+        ysize 800
 
         viewport:
-            xsize 1000
-            ysize 1000
+            xsize 800
+            ysize 800
+            child_size (int(1000*map_zoom), int(1000*map_zoom))
             draggable True
             mousewheel True
 
             fixed:
-                add Transform("gui/westchester_map.png", zoom=map_zoom, xsize=750, ysize=750):
+                xsize int(1000 * map_zoom)
+                ysize int(1000 * map_zoom)
+                add Transform("gui/westchester_map.png", zoom=map_zoom, xsize=1000, ysize=1000):
                     xalign 0.5
                     yalign 0.5
-        
+
+        # Zoom in
+        textbutton "+":
+            xalign 0.90
+            yalign 0.95
+            background "#333333"
+            hover_background "#666666"
+
+            action SetVariable(
+                "map_zoom",
+                min(map_zoom + 0.2, 3.0)
+            )
+
+        # Zoom out
+        textbutton "-":
+            xalign 0.95
+            yalign 0.95
+            background "#333333"
+            hover_background "#666666"
+
+            action SetVariable(
+                "map_zoom",
+                max(map_zoom - 0.2, 0.8)
+            )
+
         textbutton "Close":
-            xalign 1.0
-            yalign 0.0
+            xalign 0.95
+            yalign 0.10
+            background "#333333"
+            hover_background "#666666"
             action Hide("map")
 
 screen map_button():
