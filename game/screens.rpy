@@ -1669,10 +1669,19 @@ screen map():
     frame:
         xalign 0.5
         yalign 0.5
+        xsize 1000
+        ysize 1000
 
-        text "Map":
-            xalign 0.5
-            yalign 0.5
+        viewport:
+            xsize 1000
+            ysize 1000
+            draggable True
+            mousewheel True
+
+            fixed:
+                add Transform("gui/westchester_map.png", zoom=map_zoom, xsize=750, ysize=750):
+                    xalign 0.5
+                    yalign 0.5
         
         textbutton "Close":
             xalign 1.0

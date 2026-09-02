@@ -3,6 +3,7 @@
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
 
+default map_zoom = 1.0
 define a = Character("Ada")
 define k = Character("Ms. Katherine")
 default persistent.highest_level_unlocked = 0
