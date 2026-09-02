@@ -5,6 +5,8 @@
 
 define a = Character("Ada")
 define k = Character("Ms. Katherine")
+default goal1a = False
+default goal1b = False
 
 
 # The game starts here.
@@ -73,23 +75,25 @@ label start:
 
     k "You can filter the opportunities on the map by SDG goal!"
 
-    k "It looks like you have the option of either the _A_ or _B_"
+    k "It looks like you have the option of either the Mount Vernon Community Garden or B"
 
-    k "A is in _! It's what I did as a teenager, and was pretty cool! But it was far away in _"
+    k "I volunteered at the garden as a teenager, and was pretty cool! But it was a little far away."
 
-    k "B is more local, in Yonkers. But I never tried it. I only heard about it from my friend... but I trust her!"
+    k "But B is more local, in Yonkers. But I never tried it. I only heard about it from my friend... but I trust her!"
 
     k "Which one will you choose?"
     #Pick between two options
 
     menu:
-        "Do A in NR":
-            a "I'll try A!"
+        "Do the community garden in Mount Vernon":
+            a "I'll try the Mount Vernon Community Garden."
             k "Great choice!"
+            $ goal1a = True
             jump goal1a
         "Do B in Yonkers":
             a "I'll try B!"
             k "Great choice!"
+            $ goal1b = True
             jump goal1b
     # This ends the game.
     

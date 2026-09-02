@@ -250,6 +250,8 @@ screen quick_menu():
             textbutton _("History") action ShowMenu('history')
             textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
             textbutton _("Auto") action Preference("auto-forward", "toggle")
+            textbutton _("Map") action ShowMenu('map')
+            textbutton _("Journal") action ShowMenu('journal')
             textbutton _("Save") action ShowMenu('save')
             textbutton _("Q.Save") action QuickSave()
             textbutton _("Q.Load") action QuickLoad()
@@ -306,6 +308,10 @@ screen navigation():
             textbutton _("History") action ShowMenu("history")
 
             textbutton _("Save") action ShowMenu("save")
+        
+        textbutton _("Map") action ShowMenu("map")
+
+        textbutton _("Journal") action ShowMenu("journal")
 
         textbutton _("Load") action ShowMenu("load")
 
@@ -1619,3 +1625,9 @@ style slider_vbox:
 style slider_slider:
     variant "small"
     xsize 900
+
+screen journal():
+    pass
+
+screen map():
+    pass
