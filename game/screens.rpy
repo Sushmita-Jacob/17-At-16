@@ -1745,17 +1745,29 @@ screen levels():
             text "Levels":
                 xalign 0.5
             
-            grid 3 6:
+            grid 6 3:
                 spacing 15
                 textbutton "Intro":
                     action Jump("start")
                 for i in range (1, 18):
                     if i <= persistent.highest_level_unlocked:
-                        textbutton "Level [i]":
+                        imagebutton:
+                            idle Transform("gui/sdg" + str(i) + ".png", xsize=125, ysize=125)
+                            hover Transform("gui/sdg" + str(i) + ".png", xsize=125, ysize=125)
                             action [Hide("levels"), Jump("goal" + str(i))]
+                            xsize 125
+                            ysize 125
                     else:
-                        textbutton "Locked":
+                        imagebutton:
+                            idle Transform(
+                                "gui/sdg" + str(i) + ".png",
+                                matrixcolor=SaturationMatrix(0.0), xsize=125, ysize=125
+                            )
+
                             action NullAction()
+
+                            xsize 125
+                            ysize 125
 
             textbutton "Close":
                 xalign 1.0
